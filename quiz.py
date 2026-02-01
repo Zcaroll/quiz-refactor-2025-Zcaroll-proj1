@@ -13,16 +13,16 @@ if topic == 'art':
     # Dictionary stores art questions and answers
     art_quiz_dict = {}
 
-
+    # Adding questions and answers to the art dictionary
     art_quiz_dict['Who painted the Mona Lisa?'] = 'Leonardo Da Vinci'
     art_quiz_dict['What precious stone is used to make the artist\'s pigment ultramarine?'] = 'Lapiz lazuli'
     art_quiz_dict['Anish Kapoor\'s bean-shaped Cloud Gate sculpture is a landmark of which city?'] = 'Chicago'
     art_quiz_dict['Which kid\'s TV characters are named after Renaissance artists?'] = 'Teenage Mutant Ninja Turtles'
 
-    #TODO: make non case sensitive comparison for answers
+    # Loop through art questions and award points for correct answers
     for question, correct_answer in art_quiz_dict.items():
         answer = input(question + '\n' + universal_input_prompt)
-        if answer == correct_answer:
+        if answer.lower() == correct_answer.lower():
             print('Correct!')
             total_score += 1
         else:
@@ -36,35 +36,29 @@ if topic == 'art':
 
 
 elif topic == 'space':
+
+    # Dictionary stores space questions and answers
+    space_quiz_dict = {}
+
+    # Adding questions and answers to the space dictionary
+    space_quiz_dict['Which planet is closest to the sun?'] = 'Mercury'
+    space_quiz_dict['Which planet spins in the opposite direction to all the others in the solar system?'] = 'Venus'
+    space_quiz_dict['How many moons does Mars have?'] = '2'
     
-    print('Which planet is closest to the sun?')
-    answer = input('Enter your answer: ')
-    if answer == 'Mercury':
-        print('Correct!')
-        total_score += 1
-    else:
-        print('Sorry, the correct answer is Mercury.')
 
-    print('Which planet spins in the opposite direction to all the others in the solar system?')
-    answer = input('Enter your answer: ')
-    if answer == 'Venus':
-        print('Correct!')
-        total_score += 1
-    else:
-        print('Sorry, the correct answer is Venus.')
-
-    print('How many moons does Mars have?')
-    answer = input('Enter your answer: ')
-    if answer == '2':
-        print('Correct!')
-        total_score += 1
-    else:
-        print('Sorry, the correct answer is 2.')
+    # Loop through the space questions and check answers
+    for question, correct_answer in space_quiz_dict.items():
+        answer = input(question + '\n' + universal_input_prompt)
+        if answer.lower() == correct_answer.lower():
+            print('Correct!')
+            total_score += 1
+        else:
+            print(f'Sorry, the correct answer is {correct_answer}.')
 
     print('End of quiz!')
-    print(f'Your total score on {topic} questions is {total_score} out of 3.')
+    print(f'Your total score on {topic} questions is {total_score} out of {len(space_quiz_dict)}.')
 
-    if total_score == 3:
+    if total_score == len(space_quiz_dict):
         print('You got all the answers correct!')
 
 else:
