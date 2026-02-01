@@ -10,12 +10,24 @@ universal_input_prompt = 'Enter your answer: '
 # Input validation loop for topic selection
 def get_topic():
     topic = input('Would you like art, or space questions? ').lower()
-    while topic not in ['art', 'space']:
+    while topic not in ['art', 'space', 'sports']:
         print('That is not a valid topic. Please choose "art" or "space".')
         topic = input('Would you like art, or space questions? ').lower()
     return topic
 
 topic = get_topic()
+
+#TODO create function to handle quiz logic for each topic
+def run_quiz(quiz_dict):
+    total_score = 0
+    for question, correct_answer in quiz_dict.items():
+        answer = input(question + '\n' + universal_input_prompt)
+        if answer.lower() == correct_answer.lower():
+            print('Correct!')
+            total_score += 1
+        else:
+            print(f'Sorry, the correct answer is {correct_answer}.')
+    return total_score
 
 if topic == 'art':
 
@@ -69,6 +81,16 @@ elif topic == 'space':
 
     if total_score == len(space_quiz_dict):
         print('You got all the answers correct!')
-#TODO remove this else block since input validation loop handles invalid topics
-else:
-    print('That is not a valid topic. Restart the program to try again.')
+
+elif topic == 'sports':
+    print('Sports questions are coming soon!')
+    # Dictionary stores sports questions and answers
+    sports_quiz_dict = {}
+
+    # Adding questions and answers to the sports dictionary
+    sports_quiz_dict['Which country won the first ever soccer World Cup in 1930?'] = 'Uruguay'
+    sports_quiz_dict['In which sport would you perform the Fosbury Flop?'] = 'High Jump'
+
+    run_quiz(sports_quiz_dict)
+    print(f'Your total score on {topic} questions is {total_score} out of {len(sports_quiz_dict)}.')
+    print('End of quiz!')
