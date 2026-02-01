@@ -3,10 +3,19 @@ then asks questions on the chosen topic, keeping track of the score. """
 
 total_score = 0
 
-# standerdized input prompt
+# standerdized input prompt for questions
 universal_input_prompt = 'Enter your answer: '
 
-topic = input('Would you like art, or space questions? ')
+
+# Input validation loop for topic selection
+def get_topic():
+    topic = input('Would you like art, or space questions? ').lower()
+    while topic not in ['art', 'space']:
+        print('That is not a valid topic. Please choose "art" or "space".')
+        topic = input('Would you like art, or space questions? ').lower()
+    return topic
+
+topic = get_topic()
 
 if topic == 'art':
 
@@ -60,6 +69,6 @@ elif topic == 'space':
 
     if total_score == len(space_quiz_dict):
         print('You got all the answers correct!')
-
+#TODO remove this else block since input validation loop handles invalid topics
 else:
     print('That is not a valid topic. Restart the program to try again.')
