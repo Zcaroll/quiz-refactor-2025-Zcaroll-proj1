@@ -1,39 +1,37 @@
-""" A quiz program. """
+""" A quiz program. Asks the user to choose between art and space questions,
+then asks questions on the chosen topic, keeping track of the score. """
 
 total_score = 0
+
+# standerdized input prompt
+universal_input_prompt = 'Enter your answer: '
 
 topic = input('Would you like art, or space questions? ')
 
 if topic == 'art':
 
-    print('Who painted the Mona Lisa?')
-    answer = input('Enter your answer: ')
-    if answer == 'Leonardo Da Vinci':
-        print('Correct!')
-        total_score += 1
-    else:
-        print('Sorry, the answer is Leonardo Da Vinci.')
-    
-    print('What precious stone is used to make the artist\'s pigment ultramarine?')
-    answer = input('Enter your answer: ')
-    if answer == 'Lapiz lazuli':
-        print('Correct!')
-        total_score += 1
-    else:
-        print('Sorry, the correct answer is Lapiz lazuli.')
+    # Dictionary stores art questions and answers
+    art_quiz_dict = {}
 
-    print('Anish Kapoor\'s bean-shaped Cloud Gate sculpture is a landmark of which city?')
-    answer = input('Enter your answer: ')
-    if answer == 'Chicago':
-        print('Correct!')
-        total_score += 1
-    else:
-        print('Sorry, the correct answer is Chicago.')
+
+    art_quiz_dict['Who painted the Mona Lisa?'] = 'Leonardo Da Vinci'
+    art_quiz_dict['What precious stone is used to make the artist\'s pigment ultramarine?'] = 'Lapiz lazuli'
+    art_quiz_dict['Anish Kapoor\'s bean-shaped Cloud Gate sculpture is a landmark of which city?'] = 'Chicago'
+    art_quiz_dict['Which kid\'s TV characters are named after Renaissance artists?'] = 'Teenage Mutant Ninja Turtles'
+
+    #TODO: make non case sensitive comparison for answers
+    for question, correct_answer in art_quiz_dict.items():
+        answer = input(question + '\n' + universal_input_prompt)
+        if answer == correct_answer:
+            print('Correct!')
+            total_score += 1
+        else:
+            print(f'Sorry, the correct answer is {correct_answer}.')
 
     print('End of quiz!')
-    print(f'Your total score on {topic} questions is {total_score} out of 3.')
+    print(f'Your total score on {topic} questions is {total_score} out of {len(art_quiz_dict)}.')
 
-    if total_score == 3:
+    if total_score == len(art_quiz_dict):
         print('You got all the answers correct!')
 
 
