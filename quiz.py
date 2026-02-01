@@ -9,15 +9,15 @@ universal_input_prompt = 'Enter your answer: '
 
 # Input validation loop for topic selection
 def get_topic():
-    topic = input('Would you like art, or space questions? ').lower()
+    topic = input('Would you like art, space, or sports questions? ').lower()
     while topic not in ['art', 'space', 'sports']:
-        print('That is not a valid topic. Please choose "art" or "space".')
-        topic = input('Would you like art, or space questions? ').lower()
+        print('That is not a valid topic. Please choose "art", "space", or "sports".')
+        topic = input('Would you like art, space, or sports questions? ').lower()
     return topic
 
 topic = get_topic()
 
-#TODO create function to handle quiz logic for each topic
+# function to handle quiz logic for each topic
 def run_quiz(quiz_dict):
     total_score = 0
     for question, correct_answer in quiz_dict.items():
@@ -41,13 +41,7 @@ if topic == 'art':
     art_quiz_dict['Which kid\'s TV characters are named after Renaissance artists?'] = 'Teenage Mutant Ninja Turtles'
 
     # Loop through art questions and award points for correct answers
-    for question, correct_answer in art_quiz_dict.items():
-        answer = input(question + '\n' + universal_input_prompt)
-        if answer.lower() == correct_answer.lower():
-            print('Correct!')
-            total_score += 1
-        else:
-            print(f'Sorry, the correct answer is {correct_answer}.')
+    total_score = run_quiz(art_quiz_dict)
 
     print('End of quiz!')
     print(f'Your total score on {topic} questions is {total_score} out of {len(art_quiz_dict)}.')
@@ -68,13 +62,7 @@ elif topic == 'space':
     
 
     # Loop through the space questions and check answers
-    for question, correct_answer in space_quiz_dict.items():
-        answer = input(question + '\n' + universal_input_prompt)
-        if answer.lower() == correct_answer.lower():
-            print('Correct!')
-            total_score += 1
-        else:
-            print(f'Sorry, the correct answer is {correct_answer}.')
+    total_score = run_quiz(space_quiz_dict)
 
     print('End of quiz!')
     print(f'Your total score on {topic} questions is {total_score} out of {len(space_quiz_dict)}.')
@@ -91,6 +79,9 @@ elif topic == 'sports':
     sports_quiz_dict['Which country won the first ever soccer World Cup in 1930?'] = 'Uruguay'
     sports_quiz_dict['In which sport would you perform the Fosbury Flop?'] = 'High Jump'
 
-    run_quiz(sports_quiz_dict)
+    total_score = run_quiz(sports_quiz_dict)
     print(f'Your total score on {topic} questions is {total_score} out of {len(sports_quiz_dict)}.')
+    
+    if total_score == len(sports_quiz_dict):
+        print('You got all the answers correct!')
     print('End of quiz!')
