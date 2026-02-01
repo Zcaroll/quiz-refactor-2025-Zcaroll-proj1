@@ -71,7 +71,6 @@ elif topic == 'space':
         print('You got all the answers correct!')
 
 elif topic == 'sports':
-    print('Sports questions are coming soon!')
     # Dictionary stores sports questions and answers
     sports_quiz_dict = {}
 
@@ -80,8 +79,9 @@ elif topic == 'sports':
     sports_quiz_dict['In which sport would you perform the Fosbury Flop?'] = 'High Jump'
 
     total_score = run_quiz(sports_quiz_dict)
+
+    print('End of quiz!')
     print(f'Your total score on {topic} questions is {total_score} out of {len(sports_quiz_dict)}.')
     
     if total_score == len(sports_quiz_dict):
         print('You got all the answers correct!')
-    print('End of quiz!')
